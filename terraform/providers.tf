@@ -1,5 +1,5 @@
 terraform {
-  required_version = ">1.0"
+  required_version = ">= 1.0"
   required_providers {
     aws = {
       source  = "hashicorp/aws"
@@ -12,7 +12,7 @@ terraform {
 provider "aws" {
   alias  = "primary"
   region = var.primary_region
-
+  
   default_tags {
     tags = {
       Environment = var.environment
@@ -27,7 +27,7 @@ provider "aws" {
 provider "aws" {
   alias  = "secondary"
   region = var.secondary_region
-
+  
   default_tags {
     tags = {
       Environment = var.environment
@@ -42,7 +42,7 @@ provider "aws" {
 provider "aws" {
   alias  = "tertiary"
   region = var.tertiary_region
-
+  
   default_tags {
     tags = {
       Environment = var.environment
@@ -53,8 +53,8 @@ provider "aws" {
   }
 }
 
-# Global services (Route53, CloudFront, etc..)
+# Global services (Route53, CloudFront, etc.)
 provider "aws" {
   alias  = "global"
-  region = "us-east-1"
+  region = "us-east-1"  # Global services are in us-east-1
 }

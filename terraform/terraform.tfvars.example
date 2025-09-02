@@ -1,0 +1,58 @@
+# Copy this to terraform.tfvars and fill in your values
+
+# Region Configuration
+primary_region   = "us-east-1"
+secondary_region = "us-east-2"
+tertiary_region  = "us-west-2"
+
+project_name = "cicd-demo"
+environment  = "production"
+
+# VPC Configuration
+primary_vpc_cidr   = "10.0.0.0/16"
+secondary_vpc_cidr = "10.1.0.0/16"
+tertiary_vpc_cidr  = "10.2.0.0/16"
+
+# Global Configuration
+domain_name = "your-domain.com"  # Optional
+key_pair_name = "your-key-pair"
+
+# Feature Flags
+enable_ecs = true
+enable_eks = true
+enable_cross_region_replication = true
+
+# Primary Region Capacity (Full Production Load)
+instance_type    = "t3.small"
+min_capacity     = 2
+max_capacity     = 10
+desired_capacity = 3
+
+# Standby Regions Capacity (Reduced for Cost)
+standby_min_capacity     = 1
+standby_max_capacity     = 6
+standby_desired_capacity = 1
+
+# ECS Configuration
+ecs_desired_count         = 3
+standby_ecs_desired_count = 1
+
+# EKS Configuration
+kubernetes_version = "1.27"
+node_desired_size  = 3
+node_max_size      = 6
+node_min_size      = 1
+
+standby_node_desired_size = 1
+standby_node_max_size     = 3
+standby_node_min_size     = 1
+
+node_instance_types = ["t3.medium"]
+
+# CI/CD Configuration
+github_owner = "your-github-username"
+github_repo  = "your-repo-name"
+github_token = "your-github-token"
+
+# Deployment Strategy
+deployment_strategy = "active-passive"  # or "active-active"
